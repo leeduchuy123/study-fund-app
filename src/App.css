@@ -1,0 +1,86 @@
+/* Full screen center layout */
+.app-container {
+  height: 100vh;
+  background: linear-gradient(to right, #eef5ff, #ddeeff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main card that holds both sections */
+.main-box {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  width: 360px;
+  text-align: center;
+}
+
+/* Fund section */
+.fund-box {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 28px;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.fund-display {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.fund-amount {
+  font-weight: bold;
+  color: #059669;
+}
+
+/* Reward form */
+.spend-box {
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+/* Input fields */
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Button style */
+.study-button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.study-button:hover {
+  background-color: #4338ca;
+}
