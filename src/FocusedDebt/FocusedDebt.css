@@ -1,0 +1,42 @@
+.warning-text {
+    color: red;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background-color: #ffe5e5;
+    border-left: 4px solid red;
+    border-radius: 4px;
+}
+
+.focused-debt {
+    background-color: #059669; /* Tailwind's emerald-600 */
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.focused-debt:hover {
+    background-color: #047857; /* Tailwind's emerald-700 */
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #4f46e5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}

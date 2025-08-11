@@ -36,7 +36,13 @@
 
 .fund-amount {
   font-weight: bold;
+}
+
+.fund-amount.positive {
   color: #059669;
+}
+.fund-amount.negative {
+  color: red;
 }
 
 /* Reward form */
@@ -68,19 +74,42 @@
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
-/* Button style */
+/* Reward button (positive) */
 .study-button {
-  background-color: #4f46e5;
+  width: 270px;
+  text-align: center;
+  background-color: #4caf50;       /* Friendly green */
   color: white;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 12px 20px;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.25s ease, transform 0.15s ease;
 }
 
+/* Hover: deeper green + lift */
 .study-button:hover {
-  background-color: #4338ca;
+  background-color: #43a047;
+  transform: translateY(-2px);
+}
+
+/* Pressed state: slightly darker */
+.study-button:active {
+  background-color: #388e3c;
+  transform: translateY(0);
+}
+
+/* Gentle gold glow to emphasize positivity */
+@keyframes rewardGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+  70%  { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+.study-button.cheer {
+  animation: rewardGlow 2s infinite;
 }

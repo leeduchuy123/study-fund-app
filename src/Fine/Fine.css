@@ -1,0 +1,38 @@
+/* style.css */
+
+button {
+    background-color: #ff4d4d;       /* Bright red for urgency */
+    color: white;                    /* Text contrast */
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+/* Hover makes it darker and slightly lifted */
+button:hover {
+    background-color: #e63939;
+    transform: translateY(-2px);
+}
+
+/* Pressed state for tactile feel */
+button:active {
+    background-color: #cc2e2e;
+    transform: translateY(0);
+}
+
+/* Optional: slight pulse animation to draw attention */
+@keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+}
+
+button.attention {
+    animation: pulse 2s infinite;
+}

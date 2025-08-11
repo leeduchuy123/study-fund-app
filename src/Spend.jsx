@@ -15,11 +15,6 @@ function Spend ({fund, setFund}) {
             return;
         }
 
-        if(spend > fund) {
-            alert("Not enough money.");
-            return;
-        }
-
         if(isSubmitting) return;
 
         setIsSubmitting(true);
