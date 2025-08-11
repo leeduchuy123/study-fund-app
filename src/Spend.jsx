@@ -1,5 +1,6 @@
 import {useState} from "react";
 import './App.css'
+import {saveHistory} from "./History/History.jsx"
 
 
 function Spend ({fund, setFund}) {
@@ -20,6 +21,9 @@ function Spend ({fund, setFund}) {
         setIsSubmitting(true);
 
         setFund(prev => prev - spend);
+
+        // Save to history
+        saveHistory(spend, title);
 
         //Clear form
         setTitle('');
