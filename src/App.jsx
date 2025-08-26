@@ -4,18 +4,54 @@ import Spend from "./Spend.jsx";
 import FocusedDebt from "./FocusedDebt/FocusedDebt.jsx";
 import Fine from "./Fine/Fine.jsx";
 import HistoryToggle from "./History/HistoryToggle.jsx"
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "./firebase.js"
 
 function App() {
-    const[fund, setFund] = useState(() => {
-        const saved = localStorage.getItem('studyFund');
-        return saved !== null ? Number(saved) : 0;
-    });
+    const fundDocRef = doc(db, "funds", "mainFund");
 
-    // Save fund to localStorage whenever it changes
+    const [fund, setFund] = useState(undefined);
+
+    // Fetch from Firestore → update fetchFund
     useEffect(() => {
-        localStorage.setItem('studyFund', fund);
+        const fetchData = async () => {
+            try {
+                const docSnap = await getDoc(fundDocRef);
+                if (docSnap.exists()) {
+                    setFund(docSnap.data().amount);
+                } else {
+                    await setDoc(fundDocRef, { amount: 0 });
+                    setFund(0);
+                }
+            } catch (error) {
+                console.error("Error fetching fund:", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    //Save fund to Firestore whenever it changes
+    useEffect(() => {
+        const saveFund = async () => {
+            try {
+                await setDoc(fundDocRef, {amount: fund});
+            } catch (error) {
+                console.error("Error saving fund to Firestore: ", error);
+            }
+        };
+        saveFund();
     }, [fund]);
 
+    // const[fund, setFund] = useState(() => {
+    //     const saved = localStorage.getItem('studyFund');
+    //     return saved !== null ? Number(saved) : 0;
+    // });
+    //
+    // // Save fund to localStorage whenever it changes
+    // useEffect(() => {
+    //     localStorage.setItem('studyFund', fund);
+    // }, [fund]);
+    //
     const handClick = () => {
         setFund(prev => prev + 5000);
     }
@@ -29,7 +65,7 @@ function App() {
                       <p className="fund-display">
                           Current Fund:
                           <span className={`fund-amount ${fund < 0 ? 'negative':'positive'}`}>
-                            {fund.toLocaleString()} VND
+                            {fund} VND
                           </span>
                       </p>
                       <button className="study-button" onClick={handClick}>I Studied! +5,000</button>
