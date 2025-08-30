@@ -1,19 +1,38 @@
 import {useState, useEffect} from 'react'
 import "./HistoryToggle.css"
+import {doc, getDoc} from "firebase/firestore";
+import { db } from "../firebase.js"
 
 export default function HistoryToggle() {
     const [showHistory, setShowHistory] = useState(false);
     const [spends, setSpends] = useState([]);
 
-    //Load spends from localStorage
+    //Load spends from firestore
     useEffect(() => {
-        if (showHistory) {
-            const stored = JSON.parse(localStorage.getItem("spends") || "[]");
-            //Get last 10 spends
-            const last10 = stored.slice(-10).reverse(); //newest first
-            setSpends(last10);
+        const fetchHistory = async () => {
+            try {
+                const historyRef = doc(db, "funds", "history");
+                const docSnap = await getDoc(historyRef);
+
+                if(docSnap.exists()) {
+                    const data = docSnap.data();
+                    const entries = data.entries || [];
+
+                    //Get last 10 spends, newest first
+                    const last10 = entries.slice(-10).reverse();
+                    setSpends(last10);
+                } else {
+                    setSpends([])
+                }
+            } catch (error) {
+                console.error("Error fetching history: ", error);
+                setSpends([]);
+            }
+        };
+        if(showHistory) {
+            fetchHistory();
         }
-    }, [showHistory]);
+    }, [showHistory])
 
     return (
         <div className="history-toggle-container">

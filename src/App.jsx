@@ -42,16 +42,6 @@ function App() {
         saveFund();
     }, [fund]);
 
-    // const[fund, setFund] = useState(() => {
-    //     const saved = localStorage.getItem('studyFund');
-    //     return saved !== null ? Number(saved) : 0;
-    // });
-    //
-    // // Save fund to localStorage whenever it changes
-    // useEffect(() => {
-    //     localStorage.setItem('studyFund', fund);
-    // }, [fund]);
-    //
     const handClick = () => {
         setFund(prev => prev + 5000);
     }

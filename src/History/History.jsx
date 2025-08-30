@@ -1,17 +1,17 @@
-import {useState} from 'react'
+import { doc, updateDoc, arrayUnion } from "firebase/firestore"
+import { db } from "../firebase.js"
 
 //change history.jsx to a function
-export function saveHistory(spend, title) {
+export async function saveHistory(spend, title) {
+    const history = doc(db, "funds", "history");
+
     if (!title || isNaN(spend) || spend <= 0) return;
 
-    const spends = JSON.parse(localStorage.getItem("spends") || "[]");
     const entry = `${title} - ${spend} VNĐ`;
 
-    spends.push(entry);
-
-    // Keep only the last 50 entries
-    while(spends.length > 50) {
-        spends.shift(); // remove oldest entry (front of array)
+    try {
+        await updateDoc(history, {entries: arrayUnion(entry)});
+    } catch (error) {
+        console.error("Error saving history to Firestore: ", error);
     }
-    localStorage.setItem("spends", JSON.stringify(spends));
 }
